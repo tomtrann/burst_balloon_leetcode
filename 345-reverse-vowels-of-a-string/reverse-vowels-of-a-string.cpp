@@ -1,20 +1,26 @@
 class Solution {
 public:
     string reverseVowels(string s) {
-        vector<char> vowel;
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U') {
-                vowel.push_back(s[i]);
+        int left = 0; 
+        int right = s.size() - 1;
+        while (left < right) {
+            while (left < right && !isVowel(s[left])) {
+                left++;
             }
-        }
-        reverse(vowel.begin(), vowel.end());
-        int j = 0;
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U') {
-                s[i] = vowel[j];
-                j++;
+            while (left < right && !isVowel(s[right])) {
+                right--;
             }
+            swap(s[left], s[right]);
+            left++;
+            right--;
         }
         return s;
     }
+
+private:
+    bool isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+               c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
+    }
+
 };
