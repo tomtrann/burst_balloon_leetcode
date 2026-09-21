@@ -1,13 +1,8 @@
 class Solution(object):
     def plusOne(self, digits):
-        res = [] 
-        strs = ""
-        for n in digits: 
-            strs += str(n)
-        
-        newNum = int(strs) + 1
-        newString = str(newNum) 
-        for c in newString: 
-            res.append(int(c))
-        return res
-        
+       for i in range(len(digits))[::-1]:
+          if digits[i] != 9: 
+            digits[i] += 1
+            return digits
+          digits[i] = 0
+       return [1] + digits
